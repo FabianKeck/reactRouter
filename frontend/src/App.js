@@ -6,6 +6,7 @@ import AddTodo from './components/AddTodo';
 import Search from "./components/Search";
 import useSearch from "./hooks/useSearch";
 import NavBar from "./components/NavBar";
+import {Switch, Route} from "react-router-dom";
 
 
 export default function App() {
@@ -20,29 +21,65 @@ export default function App() {
                 <AddTodo onAdd={create} />
                 <Search search={search} onChange={setSearch}/>
             </Header>
-            <Board>
-                <TodoList
-                    status="OPEN"
-                    todos={filteredTodos}
-                    onDelete={remove}
-                    onAdvance={advance}
-                />
-                <TodoList
-                    status="IN_PROGRESS"
-                    todos={filteredTodos}
-                    onDelete={remove}
-                    onAdvance={advance}
-                />
-                <TodoList
-                    status="DONE"
-                    todos={filteredTodos}
-                    onDelete={remove}
-                    onAdvance={advance}
-                />
+            <Board> <Switch>
+                <Route  exact path={["/","/all"]}>
+                    <ListAll/>
+                </Route>
+                <Route path={"/open"}>
+                    <ListOpen/>
+                </Route>
+                <Route path={"/inprogress"}>
+                    <ListInProgress/>
+                </Route>
+                <Route path={"/done"}>
+                    <ListDone/>
+                </Route>
+            </Switch>
             </Board>
+
+
         </Main>
     );
+
+    function ListOpen(){
+        return  <TodoList
+            status="OPEN"
+            todos={filteredTodos}
+            onDelete={remove}
+            onAdvance={advance}
+        />
+    }
+    function ListInProgress(){
+        return  <TodoList
+            status="IN_PROGRESS"
+            todos={filteredTodos}
+            onDelete={remove}
+            onAdvance={advance}
+        />
+    }
+    function ListDone(){
+        return  <TodoList
+            status="DONE"
+            todos={filteredTodos}
+            onDelete={remove}
+            onAdvance={advance}
+        />
+    }
+
+
+
+
+    function ListAll(){
+        return(<>
+            <ListOpen/>
+            <ListInProgress/>
+            <ListDone/>
+            </>)
+
+    }
 }
+
+
 
 const Header = styled.header`
   display: flex;
