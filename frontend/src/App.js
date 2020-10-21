@@ -36,7 +36,7 @@ export default function App() {
                     <ListDone/>
                 </Route>
                 <Route path={"/confirmdelete/:id"}>
-                    <DeleteConfirmation removeById={remove}/>
+                    <DeleteConfirmation removeById={remove} todos={todos}/>
                 </Route>
             </Switch>
             </Board>

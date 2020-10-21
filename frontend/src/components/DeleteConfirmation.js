@@ -3,14 +3,18 @@ import Todo from "./Todo";
 import styled from "styled-components";
 import {useParams, useHistory} from "react-router-dom";
 
-export default function DeleteConfirmation({removeById}) {
+export default function DeleteConfirmation({removeById, todos}) {
 
     const {id} = useParams();
     const history = useHistory();
 
+    const findTodoById = (todos , id) => {
+        return todos.find(todo => todo.id === id)
+    }
+
     return <div>
-        <Todo/>
-        Do you really want to delete this item {id}?
+        {JSON.stringify(findTodoById(todos,id))}
+        Do you really want to delete this item with {id}?
         <ButtonGroup>
             <button onClick={() => history.goBack()}>Cancel</button>
             <button onClick={() => {

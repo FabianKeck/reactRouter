@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
-export default function Todo({ id, status, description, onAdvance }) {
+export default function Todo({ id, status, description, onAdvance}) {
     return (
         <StyledTodo>
             <h3>
