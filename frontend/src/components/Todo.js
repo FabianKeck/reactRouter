@@ -1,21 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
-export default function Todo({ id, status, description, onDelete, onAdvance }) {
+export default function Todo({ id, status, description, onAdvance }) {
     return (
         <StyledTodo>
             <h3>
                 {description} <small>[{status}]</small>
             </h3>
             <ButtonGroup>
-                {status !== 'DONE' && (
+                {status !== 'DONE' && onAdvance && (
                     <button
                         onClick={() => onAdvance({ id, description, status })}
                     >
                         Advance
                     </button>
                 )}
-                <button onClick={() => onDelete(id)}>Delete</button>
+                <Link to={"/confirmdelete/" + id}><button>Delete</button></Link>
             </ButtonGroup>
         </StyledTodo>
     );
