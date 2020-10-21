@@ -5,6 +5,8 @@ import useTodos from './hooks/useTodos';
 import AddTodo from './components/AddTodo';
 import Search from "./components/Search";
 import useSearch from "./hooks/useSearch";
+import NavBar from "./components/NavBar";
+
 
 export default function App() {
     const [todos, create, remove, advance] = useTodos();
@@ -14,6 +16,7 @@ export default function App() {
         <Main>
             <Header>
                 <h1>Super Kanban Board </h1>
+                <NavBar/>
                 <AddTodo onAdd={create} />
                 <Search search={search} onChange={setSearch}/>
             </Header>
