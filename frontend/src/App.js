@@ -6,7 +6,7 @@ import AddTodo from './components/AddTodo';
 import Search from "./components/Search";
 import useSearch from "./hooks/useSearch";
 import NavBar from "./components/NavBar";
-import {Switch, Route, useParams} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 
 
