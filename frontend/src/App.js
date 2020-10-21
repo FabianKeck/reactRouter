@@ -6,7 +6,8 @@ import AddTodo from './components/AddTodo';
 import Search from "./components/Search";
 import useSearch from "./hooks/useSearch";
 import NavBar from "./components/NavBar";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, useParams} from "react-router-dom";
+import DeleteConfirmation from "./components/DeleteConfirmation";
 
 
 export default function App() {
@@ -22,6 +23,9 @@ export default function App() {
                 <Search search={search} onChange={setSearch}/>
             </Header>
             <Board> <Switch>
+                <Route  exact path={["/","/all"]}>
+                    <ListAll/>
+                </Route>
                 <Route path={"/open"}>
                     <ListOpen/>
                 </Route>
@@ -31,8 +35,8 @@ export default function App() {
                 <Route path={"/done"}>
                     <ListDone/>
                 </Route>
-                <Route path={["/","/all"]}>
-                    <ListAll/>
+                <Route path={"/confirmdelete/:id"}>
+                    <DeleteConfirmation removeById={remove}/>
                 </Route>
             </Switch>
             </Board>
@@ -45,7 +49,6 @@ export default function App() {
         return  <TodoList
             status="OPEN"
             todos={filteredTodos}
-            onDelete={remove}
             onAdvance={advance}
         />
     }
@@ -53,7 +56,6 @@ export default function App() {
         return  <TodoList
             status="IN_PROGRESS"
             todos={filteredTodos}
-            onDelete={remove}
             onAdvance={advance}
         />
     }
@@ -61,7 +63,6 @@ export default function App() {
         return  <TodoList
             status="DONE"
             todos={filteredTodos}
-            onDelete={remove}
             onAdvance={advance}
         />
     }
