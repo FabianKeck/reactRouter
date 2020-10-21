@@ -1,7 +1,7 @@
 import React from "react";
-import Todo from "./Todo";
 import styled from "styled-components";
 import {useParams, useHistory} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 export default function DeleteConfirmation({removeById, todos}) {
 
@@ -16,11 +16,11 @@ export default function DeleteConfirmation({removeById, todos}) {
         {JSON.stringify(findTodoById(todos,id))}
         Do you really want to delete this item with {id}?
         <ButtonGroup>
-            <button onClick={() => history.goBack()}>Cancel</button>
-            <button onClick={() => {
+            <Button variant="contained" color="primary" onClick={() => history.goBack()}>Cancel</Button>
+            <Button variant="contained" color="secondary" onClick={() => {
                 removeById(id);
                 history.goBack();
-            }}>Delete</button>
+            }}>Delete</Button>
         </ButtonGroup>
     </div>;
 }
