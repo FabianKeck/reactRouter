@@ -12,10 +12,10 @@ export default function DeleteConfirmation({removeById}) {
         <Todo/>
         Do you really want to delete this item {id}?
         <ButtonGroup>
-            <button onClick={() => history.push("/all")}>Cancel</button>
+            <button onClick={() => history.goBack()}>Cancel</button>
             <button onClick={() => {
                 removeById(id);
-                history.push("/all");
+                history.goBack();
             }}>Delete</button>
         </ButtonGroup>
     </div>;
