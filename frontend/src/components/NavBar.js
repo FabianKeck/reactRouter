@@ -2,6 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import styled from "styled-components/macro";
 
+
 export default function NavBar() {
     return <StyledNavbar>
             <NavLink to="/all">All</NavLink>

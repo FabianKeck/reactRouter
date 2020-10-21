@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 export default function Todo({ id, status, description, onAdvance }) {
     return (
@@ -10,13 +12,13 @@ export default function Todo({ id, status, description, onAdvance }) {
             </h3>
             <ButtonGroup>
                 {status !== 'DONE' && onAdvance && (
-                    <button
+                    <Button variant="contained" color="primary"
                         onClick={() => onAdvance({ id, description, status })}
                     >
                         Advance
-                    </button>
+                    </Button>
                 )}
-                <Link to={"/confirmdelete/" + id}><button>Delete</button></Link>
+                <Link to={"/confirmdelete/" + id}><Button variant="contained" color="secondary" >Delete</Button></Link>
             </ButtonGroup>
         </StyledTodo>
     );
@@ -28,7 +30,3 @@ const StyledTodo = styled.section`
     border-radius: 8px;
 `;
 
-const ButtonGroup = styled.section`
-    display: flex;
-    justify-content: space-between;
-`;
