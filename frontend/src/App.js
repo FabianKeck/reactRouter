@@ -22,9 +22,6 @@ export default function App() {
                 <Search search={search} onChange={setSearch}/>
             </Header>
             <Board> <Switch>
-                <Route  exact path={["/","/all"]}>
-                    <ListAll/>
-                </Route>
                 <Route path={"/open"}>
                     <ListOpen/>
                 </Route>
@@ -33,6 +30,9 @@ export default function App() {
                 </Route>
                 <Route path={"/done"}>
                     <ListDone/>
+                </Route>
+                <Route path={["/","/all"]}>
+                    <ListAll/>
                 </Route>
             </Switch>
             </Board>
