@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import TodoList from './components/TodoList';
 import useTodos from './hooks/useTodos';
 import AddTodo from './components/AddTodo';
 import Search from "./components/Search";
@@ -36,39 +35,7 @@ export default function App() {
         </Main>
     );
 
-    function ListOpen(){
-        return  <TodoList
-            status="OPEN"
-            todos={filteredTodos}
-            onAdvance={advance}
-        />
-    }
-    function ListInProgress(){
-        return  <TodoList
-            status="IN_PROGRESS"
-            todos={filteredTodos}
-            onAdvance={advance}
-        />
-    }
-    function ListDone(){
-        return  <TodoList
-            status="DONE"
-            todos={filteredTodos}
-            onAdvance={advance}
-        />
-    }
 
-
-
-
-    function ListAll(){
-        return(<>
-            <ListOpen/>
-            <ListInProgress/>
-            <ListDone/>
-            </>)
-
-    }
 }
 
 
@@ -87,10 +54,4 @@ const Main = styled.main`
     h1 {
         color: hotpink;
     }
-`;
-
-const Board = styled.section`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
 `;

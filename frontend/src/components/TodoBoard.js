@@ -1,7 +1,6 @@
 import {Route, Switch} from "react-router-dom";
-import DeleteConfirmation from "./DeleteConfirmation";
 import React from "react";
-import styled from "styled-components/dist/styled-components-macro.esm";
+import styled from "styled-components/macro";
 import TodoList from "./TodoList";
 
 export default function ({todos, advance}){
@@ -12,17 +11,16 @@ export default function ({todos, advance}){
                 <Route  exact path={["/","/all"]}>
                     <ListAll/>
                 </Route>
-                <Route path={"/open"}>
 
-                </Route>
-                <Route path={"/inprogress"}>
-
-                </Route>
-                <Route path={"/done"}>
-
-                </Route>
+                {statuses.map(status =><Route path={statusToUrlFragment(status)}>
+                    <TodoList status={status} todos={todos} onAdvance={advance}/>
+                </Route>)}
         </Switch>
     </Board>
+
+    function statusToUrlFragment(status){
+        return "/"+status.toLowerCase().replace("_","")
+    }
 
 
     function ListAll(){
