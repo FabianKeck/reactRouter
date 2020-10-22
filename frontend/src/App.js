@@ -8,6 +8,7 @@ import useSearch from "./hooks/useSearch";
 import NavBar from "./components/NavBar";
 import {Switch, Route} from "react-router-dom";
 import DeleteConfirmation from "./components/DeleteConfirmation";
+import TodoBoard from "./components/TodoBoard";
 
 
 export default function App() {
@@ -22,25 +23,15 @@ export default function App() {
                 <AddTodo onAdd={create} />
                 <Search search={search} onChange={setSearch}/>
             </Header>
-            <Board> <Switch>
-                <Route  exact path={["/","/all"]}>
-                    <ListAll/>
-                </Route>
-                <Route path={"/open"}>
-                    <ListOpen/>
-                </Route>
-                <Route path={"/inprogress"}>
-                    <ListInProgress/>
-                </Route>
-                <Route path={"/done"}>
-                    <ListDone/>
-                </Route>
+
+             <Switch>
                 <Route path={"/confirmdelete/:id"}>
                     <DeleteConfirmation removeById={remove} todos={todos}/>
                 </Route>
+                 <Route>
+                     <TodoBoard todos={filteredTodos} advance={advance}/>
+                 </Route>
             </Switch>
-            </Board>
-
 
         </Main>
     );
